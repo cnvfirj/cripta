@@ -18,7 +18,7 @@ class MainWidget extends StatelessWidget{
         DefaultCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      title: 'beauty design',
+      title: 'cripta app',
       // theme: ThemeData(fontFamily: "Monserat"),
       home: Column(),
     );
