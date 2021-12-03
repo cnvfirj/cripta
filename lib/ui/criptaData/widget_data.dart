@@ -14,11 +14,17 @@ class UnionWidgetData extends StatelessWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        children:const [
+         PanelButtons()
+        ],
       );
     } else {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        children:const [
+          PanelButtons()
+        ],
       );
     }
   }
@@ -108,3 +114,32 @@ class Delimiter extends StatelessWidget {
     );
   }
 }
+
+class EditText extends StatefulWidget{
+  const EditText({Key? key}) : super(key: key);
+
+
+  @override
+  State createState() =>StateEditText();
+}
+
+class StateEditText extends State<EditText>{
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<EditTextDataProvider>(
+      builder: (BuildContext context, EditTextDataProvider provider, Widget? child){
+        return ListView(
+          children:const [
+            TextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+            )
+          ],
+        );
+      },
+    );
+  }
+}
+
+
