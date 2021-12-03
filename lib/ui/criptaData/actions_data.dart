@@ -1,9 +1,9 @@
 enum ActionsButtonsData{
-  Encript,
-  Decifer,
-  Share,
-  Find,
-  Clear
+  encode,
+  decode,
+  share,
+  find,
+  clear
 }
 class ButtonsDataProvider{
 
