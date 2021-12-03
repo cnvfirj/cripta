@@ -19,7 +19,6 @@ class MainWidget extends StatelessWidget{
       ],
       supportedLocales: S.delegate.supportedLocales,
       title: 'cripta app',
-      // theme: ThemeData(fontFamily: "Monserat"),
       home: Column(),
     );
   }
