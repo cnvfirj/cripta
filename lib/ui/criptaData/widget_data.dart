@@ -1,5 +1,7 @@
 import 'package:cripta/help/constants.dart';
 import 'package:cripta/help/methods.dart';
+import 'package:cripta/ui/common/actions.dart';
+import 'package:cripta/ui/common/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +20,7 @@ class UnionWidgetData extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children:const [
-         PanelButtons()
+         _PanelButtons()
         ],
       );
     } else {
@@ -26,15 +28,15 @@ class UnionWidgetData extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children:const [
-          PanelButtons()
+          _PanelButtons()
         ],
       );
     }
   }
 }
 
-class PanelButtons extends StatelessWidget {
-  const PanelButtons({Key? key}) : super(key: key);
+class _PanelButtons extends StatelessWidget {
+  const _PanelButtons({Key? key}) : super(key: key);
 
   /*от ориентации выстраиваем панель кнопок*/
   @override
@@ -56,20 +58,20 @@ class PanelButtons extends StatelessWidget {
 
   List<Widget> panel() {
     return [
-      const Button(GlobalColors.colorPanelButtons, Icons.clear,
-          ActionsButtonsData.clear),
+      const _Button(GlobalColors.colorPanelButtons, Icons.clear,
+          ActionsButtonsId.clear),
       const Delimiter(),
-      const Button(GlobalColors.colorPanelButtons, Icons.find_in_page,
-          ActionsButtonsData.find),
+      const _Button(GlobalColors.colorPanelButtons, Icons.find_in_page,
+          ActionsButtonsId.find),
       const Delimiter(),
-      const Button(GlobalColors.colorPanelButtons, Icons.share,
-          ActionsButtonsData.share),
+      const _Button(GlobalColors.colorPanelButtons, Icons.share,
+          ActionsButtonsId.share),
       const Delimiter(),
-      const Button(GlobalColors.colorPanelButtons, Icons.subscriptions,
-          ActionsButtonsData.encode),
+      const _Button(GlobalColors.colorPanelButtons, Icons.subscriptions,
+          ActionsButtonsId.encode),
       const Delimiter(),
-      const Button(GlobalColors.colorPanelButtons, Icons.subscriptions_outlined,
-          ActionsButtonsData.decode),
+      const _Button(GlobalColors.colorPanelButtons, Icons.subscriptions_outlined,
+          ActionsButtonsId.decode),
     ];
   }
 }
@@ -77,12 +79,12 @@ class PanelButtons extends StatelessWidget {
 /*кнопка, принимает цвет, рисунок и ее идентификаиор
 * нажатие на кнопку отправляет идентификатор в
 * провидер*/
-class Button extends StatelessWidget {
+class _Button extends StatelessWidget {
   final Color _color;
   final IconData _iconData;
-  final ActionsButtonsData _action;
+  final ActionsButtonsId _action;
 
-  const Button(
+  const _Button(
     this._color,
     this._iconData,
     this._action, {
@@ -93,32 +95,13 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ButtonsDataProvider>(builder:
         (BuildContext context, ButtonsDataProvider provider, Widget? child) {
-      return Expanded(
-          child: Material(
-              color: _color,
-              child: InkWell(
-                splashColor: Colors.black38,
-                onTap: () {
-                  provider.onTap(_action);
-                },
-                child: Icon(
-                  _iconData,
-                  color: GlobalColors.colorText,
-                ),
-              )));
+      return PressIcon(
+        color: _color,
+        iconData: _iconData,
+        id: _action,
+        tap: (ActionsButtonsId id) { provider.onTap(id); },
+        );
     });
-  }
-}
-
-class Delimiter extends StatelessWidget {
-  const Delimiter({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: GlobalSizes.delimiter,
-      color: GlobalColors.colorWidgetBackground,
-    );
   }
 }
 

@@ -1,7 +1,6 @@
-
 import 'package:cripta/ui/common/actions.dart';
 
-class ButtonsDataProvider extends ButtonsIdProvider{
+class ButtonsKeyProvider extends ButtonsIdProvider{
 
   @override
   void onTap(ActionsButtonsId id) {
@@ -10,6 +9,6 @@ class ButtonsDataProvider extends ButtonsIdProvider{
 
 }
 
-class EditTextDataProvider{
+class EditTextKeyProvider{
 
 }
