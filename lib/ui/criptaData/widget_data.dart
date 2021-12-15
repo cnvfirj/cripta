@@ -8,6 +8,9 @@ import 'actions_data.dart';
 class UnionWidgetData extends StatelessWidget {
   const UnionWidgetData({Key? key}) : super(key: key);
 
+  /*т ориентации вістраиваем компоненты виджета.
+  * Портрет - окно ввода/вывода текста под ним горизонтальная панель кнопок
+  * ландшафт - окно ввода/вывод текста с лева вертикальная панель кнопок*/
   @override
   Widget build(BuildContext context) {
     if (CheckStates.portrait(context)) {
@@ -33,6 +36,7 @@ class UnionWidgetData extends StatelessWidget {
 class PanelButtons extends StatelessWidget {
   const PanelButtons({Key? key}) : super(key: key);
 
+  /*от ориентации выстраиваем панель кнопок*/
   @override
   Widget build(BuildContext context) {
     if (CheckStates.portrait(context)) {
@@ -70,6 +74,9 @@ class PanelButtons extends StatelessWidget {
   }
 }
 
+/*кнопка, принимает цвет, рисунок и ее идентификаиор
+* нажатие на кнопку отправляет идентификатор в
+* провидер*/
 class Button extends StatelessWidget {
   final Color _color;
   final IconData _iconData;
